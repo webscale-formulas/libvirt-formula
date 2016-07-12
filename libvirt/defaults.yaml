@@ -4,7 +4,6 @@ libvirt:
   python_pkg: libvirt-python
   libvirt_service: libvirtd
   libvirtd_config: /etc/libvirt/libvirtd.conf
-  sysconfig: False 
-  deb_default: False 
+  daemon_config_path: {}
   extra_pkgs: []
   

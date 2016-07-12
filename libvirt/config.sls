@@ -8,10 +8,10 @@ libvirt.config:
     - template: jinja
     - source: salt://{{ slspath }}/templates/libvirtd.conf.jinja
 
-{% if grains.get('os_family') == 'RedHat' %}
-/etc/sysconfig/{{ libvirt_settings.libvirt_service }}:
+{% if grains.get('os_family') == 'RedHat' or 'Arch' %}
+{{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}:
   file.managed:
-    - name: /etc/sysconfig/{{ libvirt_settings.libvirt_service }}
+    - name: {{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}
     - template: jinja
     - source: salt://{{ slspath }}/templates/sysconfig_libvirtd.jinja
     - watch_in:
@@ -19,9 +19,9 @@ libvirt.config:
 {% endif %}
 
 {% if grains.get('os_family') == 'Debian' %}
-/etc/sysconfig/{{ libvirt_settings.libvirt_service }}:
+{{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}:
   file.managed:
-    - name: /etc/sysconfig/{{ libvirt_settings.libvirt_service }}
+    - name: {{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}
     - template: jinja
     - source: salt://{{ slspath }}/templates/deb_default_libvirtd.jinja
     - watch_in:

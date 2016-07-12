@@ -12,13 +12,15 @@ that differ from whats in defaults.yaml
       'qemu_pkg': 'qemu-kvm',
       'python_pkg': 'python-libvirt',
       'extra_pkgs': ['libguestfs0', 'libguestfs-tools', 'gnutls-bin', 'virt-top'],
-      'deb_default': True,
+      'daemon_config_path': '/etc/default'
     },
     'RedHat': {
       'extra_pkgs': ['libguestfs'],
-      'sysconfig': True,
+      'daemon_config_path': '/etc/sysconfig',
     },
-    'Arch': {},
+    'Arch': {
+      'daemon_config_path': '/etc/conf.d',
+    },
   }, grain="os_family", merge=salt['pillar.get']('libvirt:lookup'))
 %}
   
