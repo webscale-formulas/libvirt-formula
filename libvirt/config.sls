@@ -16,9 +16,7 @@ libvirt.config:
     - source: salt://{{ slspath }}/templates/sysconfig_libvirtd.jinja
     - watch_in:
       - service: libvirt.service
-{% endif %}
-
-{% if grains.get('os_family') == 'Debian' %}
+{% elif grains.get('os_family') == 'Debian' %}
 {{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}:
   file.managed:
     - name: {{ libvirt_settings.daemon_config_path }}/{{ libvirt_settings.libvirt_service }}
