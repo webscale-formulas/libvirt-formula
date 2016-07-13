@@ -10,4 +10,4 @@ qemu:
 
 extra_pkgs:
   pkg.installed:
-    - pkgs: {{ libvirt_settings.extra_pkgs }}
+    - pkgs: {{ libvirt_settings.extra_pkgs|json }}
